@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Careers | Elvex Technologies</title>
+<meta name="description" content="Career opportunities at Elvex Technologies, a manufacturer of transformers, inductors, chokes and current sensors.">
+<meta property="og:title" content="Careers | Elvex Technologies">
+<meta property="og:description" content="Career opportunities at Elvex Technologies, a manufacturer of transformers, inductors, chokes and current sensors.">
+<meta property="og:image" content="assets/img/logo.png">
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="careers">
+<main>
+<section class="page-head"><div class="container">
+  <h1 id="ph-title">Careers</h1>
+  <p id="ph-sub">Build the components that power tomorrow's electronics.</p>
+  <div class="crumbs"><a href="index.html">Home</a><i>/</i><span id="ph-crumb">Careers</span></div>
+</div></section>
+
+<section class="section"><div class="container">
+  <div class="title-center">
+    <span class="kicker">Work with us</span>
+    <h2 class="title">Grow your career at <span id="cr-company">Elvex Technologies</span></h2>
+    <p id="cr-intro">We design, wind, assemble and test magnetic components for customers across industries. If you enjoy precise, hands-on engineering and manufacturing work, we would like to hear from you.</p>
+  </div>
+
+  <div class="careers-head"><h3>Current openings</h3></div>
+  <div class="jobs" id="jobs"></div>
+</div></section>
+
+<section class="section bg-alt" id="apply"><div class="container">
+  <div class="contact-grid">
+    <form class="form" id="career-form" novalidate>
+      <h3>Apply Now</h3><p>Fields marked * are required.</p>
+      <div class="form-notice" id="cr-notice" hidden></div>
+      <div class="form-row">
+        <div class="field"><label for="c-name">Full name *</label><input id="c-name" name="name" autocomplete="name" required maxlength="100"><small class="err" data-for="c-name"></small></div>
+        <div class="field"><label for="c-email">Email address *</label><input id="c-email" name="email" type="email" autocomplete="email" required maxlength="150"><small class="err" data-for="c-email"></small></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="c-phone">Phone number *</label><input id="c-phone" name="phone" type="tel" autocomplete="tel" required placeholder="e.g. +91 98765 43210"><small class="err" data-for="c-phone"></small></div>
+        <div class="field"><label for="c-position">Position applied for *</label><select id="c-position" name="position" required></select><small class="err" data-for="c-position"></small></div>
+      </div>
+      <div class="field"><label for="c-resume">Resume * <span class="hint">PDF, DOC or DOCX, up to 5 MB</span></label><input id="c-resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required><small class="err" data-for="c-resume"></small></div>
+      <div class="field"><label for="c-msg">Message <span class="hint">optional</span></label><textarea id="c-msg" name="message" maxlength="2000" placeholder="Tell us briefly about your experience"></textarea><small class="err" data-for="c-msg"></small></div>
+      <button class="btn btn-blue" type="submit" id="c-submit" data-arrow>Submit application </button>
+      <div class="form-msg" id="c-form-msg" role="status" aria-live="polite"></div>
+    </form>
+    <div class="contact-side" id="careers-side"></div>
+  </div>
+</div></section>
+</main>
+<script src="data/site-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

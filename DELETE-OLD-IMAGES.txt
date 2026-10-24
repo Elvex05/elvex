@@ -1,0 +1,9 @@
+Delete these old product images from elvex/assets/img/products/ (nothing uses them any more):
+airCoil.webp, bldc.webp, cmChoke.webp, currentTransformer.webp, ecore.webp, electromagnet.webp,
+evCharger.webp, ferriteSet.webp, halls.webp, ignitionCoil.webp, inductionCoil.webp, inductor.webp,
+isolation.webp, ledDriver.webp, magnet.webp, pcb.webp, psu.webp, relay.webp, smdInductor.webp,
+solenoid.webp, stepper.webp, toroid.webp, wireless.webp
+(currentSensor.webp is replaced by the new render in this update, so keep that one.)
+
+Or run this inside the elvex-website folder in PowerShell:
+cd elvex\assets\img\products; Remove-Item airCoil.webp,bldc.webp,cmChoke.webp,currentTransformer.webp,ecore.webp,electromagnet.webp,evCharger.webp,ferriteSet.webp,halls.webp,ignitionCoil.webp,inductionCoil.webp,inductor.webp,isolation.webp,ledDriver.webp,magnet.webp,pcb.webp,psu.webp,relay.webp,smdInductor.webp,solenoid.webp,stepper.webp,toroid.webp,wireless.webp
