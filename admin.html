@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Elvex Admin — Content Manager</title>
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0c0f;--panel:#121418;--panel2:#181b20;--line:#262a31;--text:#eef0f3;--muted:#949ba5;--cu:#d4843f;--cu2:#f0a466;--red:#ef5350;--green:#4ade80;--head:"Barlow Condensed",Arial Narrow,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}a{color:var(--cu2)}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+aside img{height:auto;width:130px;margin:0 6px 22px}
+.tab{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;padding:11px 14px;border-radius:10px;color:var(--muted);font-weight:500}
+.tab:hover{background:var(--panel2);color:var(--text)}.tab.active{background:rgba(212,132,63,.14);color:var(--cu2)}
+.tab .n{margin-left:auto;font-size:12px;background:var(--panel2);padding:2px 8px;border-radius:99px;color:var(--muted)}
+aside .foot{margin-top:auto;font-size:12px;color:var(--muted);padding:10px}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}.dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.dot.dirty{background:var(--cu)}
+main{padding:28px 36px 80px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+h1{font-family:var(--head);text-transform:uppercase;font-size:40px;margin:0;line-height:1}
+h2{font-family:var(--head);text-transform:uppercase;font-size:24px;margin:28px 0 12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);font-weight:600;font-size:14px;transition:.15s}
+.btn:hover{border-color:#3a3f47}.btn.pri{background:var(--cu);border-color:var(--cu);color:#111}.btn.pri:hover{background:var(--cu2)}
+.btn.danger{color:var(--red)}.btn.danger:hover{border-color:var(--red)}.btn.sm{padding:6px 10px;font-size:13px;border-radius:8px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.help{background:rgba(212,132,63,.08);border:1px solid rgba(212,132,63,.3);border-radius:12px;padding:14px 18px;color:#e9d3c0;font-size:14px;margin-bottom:22px}
+.help b{color:var(--cu2)}
+.list{display:grid;gap:10px}
+.item{display:grid;grid-template-columns:28px 84px 1fr auto;gap:16px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px 10px 10px}
+.item img{width:84px;height:63px;object-fit:cover;border-radius:8px;background:var(--panel2)}
+.item .t b{display:block}.item .t span{color:var(--muted);font-size:13px}
+.item .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.move{display:flex;flex-direction:column;gap:2px}.move button{background:none;border:0;color:var(--muted);padding:0;line-height:1;font-size:14px}.move button:hover{color:var(--cu2)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(212,132,63,.15);color:var(--cu2);margin-left:6px;vertical-align:middle}
+input[type=text],input[type=url],input[type=email],input:not([type]),select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px 12px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--cu)}
+textarea{min-height:90px;resize:vertical}
+label.f{display:block;margin-bottom:14px}label.f>span{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:500}
+label.f small{color:#6c727b;font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.search{max-width:280px}
+/* drawer */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;visibility:hidden;transition:.2s;z-index:50}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(720px,100%);background:var(--panel);border-left:1px solid var(--line);z-index:51;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+.open .drawer-bg{opacity:1;visibility:visible}.open .drawer{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid var(--line)}
+.drawer header h3{font-family:var(--head);text-transform:uppercase;font-size:26px;margin:0}
+.drawer .body{padding:22px 24px;overflow-y:auto;flex:1}
+.drawer footer{padding:14px 24px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}
+.imgbox{display:grid;grid-template-columns:160px 1fr;gap:14px;align-items:start}
+.imgbox .pv{width:160px;aspect-ratio:4/3;border-radius:10px;background:var(--bg);border:1px dashed var(--line);object-fit:cover}
+.gal{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.gal div{position:relative}.gal img{width:96px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.gal button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;border:0;background:var(--red);color:#fff;font-size:12px;line-height:1}
+.pairs .pair{display:grid;grid-template-columns:1fr 1fr 36px;gap:8px;margin-bottom:8px}
+.pairs .pair button{border:1px solid var(--line);background:var(--panel2);border-radius:8px;color:var(--red)}
+.check{display:flex;align-items:center;gap:10px;margin-bottom:14px}.check input{width:18px;height:18px;accent-color:var(--cu)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,30px);background:#1f232a;border:1px solid var(--line);padding:12px 18px;border-radius:10px;opacity:0;transition:.25s;z-index:99;font-size:14px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.steps li{counter-increment:s;padding-left:44px;position:relative}.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:rgba(212,132,63,.15);color:var(--cu2);display:grid;place-items:center;font-weight:700}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.hidden{display:none!important}
+.ask{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:80;padding:16px}.ask-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:420px;width:100%}.ask-box p{margin:0 0 18px}
+.mobile-tabs{display:none}
+@media(max-width:860px){.app{grid-template-columns:1fr}aside{display:none}.mobile-tabs{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:10}.mobile-tabs .tab{white-space:nowrap;width:auto}main{padding:20px 16px 80px}.item{grid-template-columns:22px 64px 1fr}.item img{width:64px;height:48px}.item .acts{grid-column:1/-1;justify-content:flex-start}.grid2,.imgbox{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mobile-tabs" id="mtabs"></div>
+<div class="app">
+  <aside>
+    <img src="assets/img/logo.png" alt="Elvex" style="background:#fff;border-radius:8px;padding:6px 8px">
+    <div id="tabs"></div>
+    <div class="foot"><div class="status"><span class="dot" id="dot"></span><span id="status">All changes saved in this browser</span></div><p style="margin:12px 0 0"><a href="index.html" target="_blank">Open website ↗</a></p></div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<div id="drawer-wrap">
+  <div class="drawer-bg" id="drawer-bg"></div>
+  <div class="drawer" role="dialog" aria-modal="true">
+    <header><h3 id="d-title">Edit</h3><button class="btn sm" id="d-close">✕</button></header>
+    <div class="body" id="d-body"></div>
+    <footer><button class="btn" id="d-cancel">Cancel</button><button class="btn pri" id="d-save">Save</button></footer>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<input type="file" id="import-file" accept=".js,.json" class="hidden">
+
+<script src="data/site-data.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

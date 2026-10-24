@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us | Elvex Technologies</title>
+<meta name="description" content="Elvex Technologies designs and manufactures magnetic components, transformers, coils, electromechanical parts, power electronics and sensors.">
+<meta property="og:title" content="Contact Us | Elvex Technologies">
+<meta property="og:description" content="Elvex Technologies designs and manufactures magnetic components, transformers, coils, electromechanical parts, power electronics and sensors.">
+<meta property="og:image" content="assets/img/logo.png">
+<link rel="icon" type="image/png" href="assets/img/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+<main>
+<section class="page-head"><div class="container">
+  <h1 id="ph-title">Contact Us</h1>
+  <p id="ph-sub">Tell us about your requirement. Our engineers usually respond within one business day.</p>
+  <div class="crumbs"><a href="index.html">Home</a><i>/</i><span id="ph-crumb">Contact Us</span></div>
+</div></section>
+<section class="section"><div class="container">
+  <div class="info-cards" id="info-cards"></div>
+  <div class="contact-grid">
+    <form class="form" id="contact-form">
+      <h3>Send an Enquiry</h3><p>Fields marked * are required.</p>
+      <div class="form-row">
+        <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" required></div>
+        <div class="field"><label for="f-company">Company</label><input id="f-company" name="company"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="f-product">Product of interest</label><select id="f-product" name="product"></select></div>
+        <div class="field"><label for="f-qty">Estimated quantity</label><input id="f-qty" name="quantity" placeholder="e.g. 5,000 per year"></div>
+      </div>
+      <div class="field"><label for="f-msg">Requirement details *</label><textarea id="f-msg" name="message" required placeholder="Specifications, application, timeline"></textarea></div>
+      <button class="btn btn-blue" type="submit" data-arrow>Send enquiry </button>
+      <div class="form-msg" id="form-msg" role="status"></div>
+    </form>
+    <div class="contact-side" id="contact-side"></div>
+  </div>
+  <div id="map"></div>
+</div></section>
+</main>
+<script src="data/site-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
