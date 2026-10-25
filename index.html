@@ -15,36 +15,40 @@
 <body data-page="home">
 <main>
 <section class="hero" aria-label="Elvex Technologies">
-  <div class="container hero-in">
-    <div>
+    <div class="container hero-in">
+    <div class="hero-copy">
+      <span class="eyebrow">Magnetics · Electronics · Power</span>
       <h1 id="hero-title"></h1>
       <p class="lead" id="hero-sub"></p>
       <div class="acts">
-        <a class="btn btn-primary" href="products.html">View products</a>
-        <a class="btn btn-outline" href="contact.html">Request a quote</a>
+        <a class="btn btn-primary" href="products.html">Explore products</a>
+        <a class="btn btn-ghost" href="contact.html">Request a quote</a>
       </div>
       <a class="hero-call" id="hero-call" href="#"></a>
     </div>
-    <div class="stage" aria-hidden="false">
+    <div class="stage">
       <img src="assets/img/hero-choke.webp" width="860" height="797" alt="Toroidal common mode choke made by Elvex Technologies" fetchpriority="high">
-      <span class="callout" style="top:30%;--len:60px;left:2%">Copper winding</span>
-      <span class="callout" style="top:62%;--len:56px;left:0">Toroidal core</span>
-    </div>
-    <div class="caps">
-      <div><h3>Built to your drawing</h3><p>Send a drawing or a spec. We make to it.</p></div>
-      <div><h3>Wound and tested in-house</h3><p>Winding, assembly and testing at one site.</p></div>
-      <div><h3>Prototype to volume</h3><p>Start with samples, scale when you are ready.</p></div>
     </div>
   </div>
+  <div class="container"><div class="facts" id="facts"></div></div>
 </section>
 
+<section class="section why" id="why"><div class="container">
+  <div class="why-grid">
+    <div class="why-big glass reveal"><span class="eyebrow">Why Elvex</span><h2>We make the part you drew.</h2><p>Send a drawing or a specification. We wind, assemble and test it in our own facility, then deliver to your schedule.</p><a class="btn btn-primary" href="contact.html">Send your drawing</a></div>
+    <div class="why-card glass reveal"><b>01</b><h3>Built to your drawing</h3><p>Custom windings, cores and packages made to your specification.</p></div>
+    <div class="why-card glass reveal"><b>02</b><h3>Wound and tested in-house</h3><p>Winding, assembly and testing at one site in Bengaluru.</p></div>
+    <div class="why-card glass reveal"><b>03</b><h3>Prototype to volume</h3><p>Start with samples. Scale to production when you are ready.</p></div>
+  </div>
+</div></section>
+
 <section class="section" id="products"><div class="container">
-  <div class="section-head"><div><h2>Our product range</h2><p>Five families of magnetic components. Pick a family to see the parts we make.</p></div><a class="link-more" href="products.html" id="pcount">All products</a></div>
+  <div class="section-head"><div><span class="eyebrow">What we make</span><h2>Our product range</h2><p>Five families of magnetic components. Pick a family to see the parts we make.</p></div><a class="link-more" href="products.html" id="pcount">All products</a></div>
   <div class="cat-grid" id="cat-grid"></div>
 </div></section>
 
 <section class="section bg-alt" id="featured"><div class="container">
-  <div class="section-head"><h2>Popular parts</h2></div>
+  <div class="section-head"><div><span class="eyebrow">Popular</span><h2>Parts customers ask for</h2></div><a class="link-more" href="products.html">See all</a></div>
   <div class="product-grid" id="featured-grid"></div>
 </div></section>
 
@@ -53,6 +57,7 @@
     <div class="main"><img src="assets/img/products/hfTransformer.webp" alt="High-frequency SMPS transformer" loading="lazy"></div>
   </div>
   <div class="about-text reveal">
+    <span class="eyebrow">About Elvex</span>
     <h2 id="about-title"></h2>
     <div id="about-text" style="margin-top:18px"></div>
     <a class="btn btn-outline" href="about.html">About Elvex</a>
@@ -60,7 +65,7 @@
 </div></section>
 
 <section class="section dark" id="process"><div class="container">
-  <div class="title-center"><h2>How an order runs</h2></div>
+  <div class="title-center"><span class="eyebrow">Process</span><h2>How an order runs</h2></div>
   <ol class="process">
     <li><h3>Requirement</h3><p>You share the drawing, electrical values and quantity.</p></li>
     <li><h3>Design review</h3><p>We check the design for manufacturability and cost.</p></li>
@@ -70,7 +75,7 @@
 </div></section>
 
 <section class="section" id="industries"><div class="container">
-  <div class="section-head"><h2>Industries we make for</h2></div>
+  <div class="section-head"><div><span class="eyebrow">Industries</span><h2>Industries we make for</h2></div></div>
   <ul class="ind-list" id="ind-grid"></ul>
 </div></section>
 

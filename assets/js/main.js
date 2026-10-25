@@ -202,16 +202,33 @@
     $("#hero-sub").textContent = S.heroSubtitle || "";
     const call = $("#hero-call");
     if (S.phone) { call.href = telHref(S.phone); call.innerHTML = `${ICON.phone}${esc(S.phone)} <span>Talk to an engineer</span>`; } else call.remove();
+    $("#facts").innerHTML = [[PRODUCTS.length, "products"], [CATS.length, "product families"], [(DATA.industries || []).length, "industries served"], ["Bengaluru", "India"]].map(([n, l]) => `<div><b>${esc(n)}</b><span>${esc(l)}</span></div>`).join("");
     aboutBlock();
     $("#cat-grid").innerHTML = CATS.map((c) => `
       <a class="cat-card" href="products.html?category=${encodeURIComponent(c.id)}">
         <div class="ph"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></div>
-        <div class="tx"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><span class="meta">${plural(countIn(c.id))}</span></div>
+        <div class="tx"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><span class="meta">${plural(countIn(c.id))}<em>${ICON.arrow}</em></span></div>
       </a>`).join("");
     const feat = PRODUCTS.filter((p) => p.featured);
     $("#featured-grid").innerHTML = (feat.length ? feat : PRODUCTS).slice(0, 8).map(productCard).join("");
     $("#pcount").textContent = `All ${PRODUCTS.length} products`;
     industries();
+    live3d();
+  }
+
+  /* Live 3D model on the home hero only (falls back to the picture) */
+  function live3d() {
+    const stage = $(".stage");
+    const conn = navigator.connection || {};
+    if (!stage || conn.saveData || /2g/.test(conn.effectiveType || "") || (navigator.deviceMemory && navigator.deviceMemory < 2)) return;
+    const go = () => import("./hero3d.js").then((m) => {
+      if (m.start(stage)) {
+        stage.classList.add("is-live");
+        const hint = document.createElement("span"); hint.className = "drag-hint"; hint.textContent = "Drag to rotate";
+        stage.append(hint);
+      }
+    }).catch(() => {});
+    if ("requestIdleCallback" in window) requestIdleCallback(go, { timeout: 2500 }); else setTimeout(go, 800);
   }
 
   /* ---------- Products ---------- */
@@ -441,6 +458,20 @@
     $$(".reveal").forEach((el) => io.observe(el));
   }
 
+  /* ---------- Motion: spotlight, parallax, count-up ---------- */
+  function fx() {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // stagger cards in
+    $$(".cat-card, .p-card, .ind-list li, .process li").forEach((el, i) => { el.classList.add("reveal"); el.style.transitionDelay = (i % 4) * 50 + "ms"; });
+    // count-up
+    $$("#facts b").forEach((b) => {
+      const n = parseInt(b.textContent, 10); if (!(n > 0) || reduce || !("IntersectionObserver" in window)) return;
+      const io = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; io.disconnect(); const t0 = performance.now(); (function step(t) { const p = Math.min(1, (t - t0) / 1100); b.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); })(t0); }));
+      const final = b.textContent; b.textContent = "0"; io.observe(b); setTimeout(() => { if (b.textContent === "0") b.textContent = final; }, 4000);
+    });
+    const hdr = $(".site-header"); const f = () => hdr.classList.toggle("scrolled", scrollY > 30); addEventListener("scroll", f, { passive: true }); f();
+  }
+
   /* ---------- Init ---------- */
   try { history.scrollRestoration = "manual"; } catch (e) {}
   if (!location.hash) scrollTo(0, 0);
@@ -449,5 +480,6 @@
   ctaBlock();
   renderFooter();
   if (page === "home") document.title = S.companyName + " | " + (S.tagline || "");
+  fx();
   reveal();
 })();
