@@ -154,6 +154,9 @@
       <div class="foot-bottom"><div class="container"><span>© ${new Date().getFullYear()} ${esc(S.companyName)}. All rights reserved.</span><span>Bengaluru, India</span></div></div>`;
     document.body.append(f);
 
+    const mail = document.createElement("a");
+    mail.className = "mail-float"; mail.href = "contact.html"; mail.setAttribute("aria-label", "Contact us"); mail.innerHTML = ICON.mail;
+    document.body.append(mail);
     if (S.whatsapp) {
       const wa = document.createElement("a");
       wa.className = "wa-float"; wa.target = "_blank"; wa.rel = "noopener"; wa.setAttribute("aria-label", "Chat on WhatsApp");
@@ -162,7 +165,7 @@
     }
     const top = document.createElement("button");
     top.className = "to-top"; top.setAttribute("aria-label", "Back to top"); top.innerHTML = ICON.up;
-    if (!S.whatsapp) top.style.bottom = "20px";
+    if (S.whatsapp) top.style.bottom = "132px";
     top.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
     document.body.append(top);
     addEventListener("scroll", () => top.classList.toggle("show", scrollY > 600), { passive: true });
