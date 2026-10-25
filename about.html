@@ -9,9 +9,7 @@
 <meta property="og:description" content="Elvex Technologies designs and manufactures magnetic components, transformers, coils, electromechanical parts, power electronics and sensors.">
 <meta property="og:image" content="assets/img/logo.png">
 <link rel="icon" type="image/png" href="assets/img/mark.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="about">
@@ -24,19 +22,15 @@
 <section class="section"><div class="container about">
   <div class="about-media reveal">
     <div class="main"><img src="assets/img/products/flybackTransformer.webp" alt="Flyback transformer"></div>
-    <div class="side"><img src="assets/img/products/toroidCmc.webp" alt="Toroidal common mode choke"></div>
-    <div class="exp"><b id="exp-num">500+</b><span id="exp-label">Custom designs<br>delivered</span></div>
   </div>
   <div class="reveal">
-    <span class="kicker">Who We Are</span>
     <h2 class="title" id="about-title"></h2>
     <div id="about-text" style="margin-top:18px"></div>
     <dl class="spec-list" id="spec-sheet"></dl>
   </div>
 </div></section>
-<section class="stats-band"><div class="container" id="stats"></div></section>
 <section class="section bg-alt"><div class="container">
-  <div class="title-center"><span class="kicker">Our Purpose</span><h2 class="title">Mission, Vision &amp; Values</h2></div>
+  <div class="title-center"><h2 class="title">Mission, Vision &amp; Values</h2></div>
   <div class="mv-grid">
     <div class="mv reveal"><div class="ic" data-icon="target"></div><h3>Our Mission</h3><p>To design and manufacture reliable, efficient components that help our customers build better products, on time and on budget.</p></div>
     <div class="mv reveal"><div class="ic" data-icon="eye"></div><h3>Our Vision</h3><p>To be the most trusted partner for magnetic and power-electronic components for OEMs in India and worldwide.</p></div>
@@ -44,13 +38,10 @@
   </div>
 </div></section>
 <section class="section"><div class="container">
-  <div class="title-center"><span class="kicker">Industries</span><h2 class="title">Industries We Serve</h2></div>
-  <div class="ind-grid" id="ind-grid"></div>
+  <div class="title-center"><h2 class="title">Industries We Serve</h2></div>
+  <div class="ind-list" id="ind-grid"></div>
 </div></section>
-<section class="cta"><div class="container">
-  <div><h2>Looking for a reliable manufacturing partner?</h2><p>Share your drawings or specifications and get a detailed quote within 24 hours.</p></div>
-  <div class="acts"><a class="btn btn-primary" href="contact.html" data-arrow>Request a quote </a><a class="btn btn-white" href="products.html">View products</a></div>
-</div></section>
+<section class="cta"><div class="container cta-in" id="cta"></div></section>
 </main>
 <script src="data/site-data.js"></script>
 <script src="assets/js/main.js"></script>

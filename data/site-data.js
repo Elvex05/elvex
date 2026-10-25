@@ -16,7 +16,7 @@ window.ELVEX_DATA = {
     "email": "contact@elvextechnologies.com",
     "phone": "+91 91804 29549",
     "whatsapp": "",
-    "address": "Your street address, City, State, Country",
+    "address": "No. 118, 1st Stage, Buddha Jyothi Layout, Chikkabidarakallu, Nagasandra Post, Bengaluru, Karnataka 560073",
     "hours": "Mon – Sat, 9:00 AM – 6:00 PM",
     "formEndpoint": "",
     "mapEmbedUrl": "",
@@ -27,24 +27,7 @@ window.ELVEX_DATA = {
       "youtube": "#",
       "x": ""
     },
-    "stats": [
-      {
-        "value": "500+",
-        "label": "Custom designs delivered"
-      },
-      {
-        "value": "99.6%",
-        "label": "First-pass test yield"
-      },
-      {
-        "value": "15+",
-        "label": "Industries served"
-      },
-      {
-        "value": "24h",
-        "label": "Quote turnaround"
-      }
-    ],
+    "stats": [],
     "specSheet": [
       {
         "label": "Company",
@@ -63,32 +46,11 @@ window.ELVEX_DATA = {
         "value": "Design · Wind · Assemble · Test"
       },
       {
-        "label": "Quality",
-        "value": "ISO 9001 · RoHS · REACH"
-      },
-      {
         "label": "Base",
-        "value": "Your city, Country"
+        "value": "Bengaluru, India"
       }
     ],
-    "certifications": [
-      {
-        "name": "ISO 9001:2015",
-        "note": "Quality management"
-      },
-      {
-        "name": "RoHS",
-        "note": "Restricted substances compliant"
-      },
-      {
-        "name": "REACH",
-        "note": "EU chemical compliance"
-      },
-      {
-        "name": "IPC-A-610",
-        "note": "Electronics assembly workmanship"
-      }
-    ],
+    "certifications": [],
     "careersEndpoint": ""
   },
   "categories": [

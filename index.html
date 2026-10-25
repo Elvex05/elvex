@@ -9,81 +9,72 @@
 <meta property="og:description" content="Elvex Technologies designs and manufactures magnetic components, transformers, coils, electromechanical parts, power electronics and sensors.">
 <meta property="og:image" content="assets/img/logo.png">
 <link rel="icon" type="image/png" href="assets/img/mark.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="home">
 <main>
-<section class="hero" aria-label="Highlights">
-  <div class="slides" id="slides"></div>
-  <div class="slider-ctrl"><div class="container"><div class="dots" id="dots"></div><div class="arrows"><button id="prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button><button id="next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div></div></div>
+<section class="hero" aria-label="Elvex Technologies">
+  <div class="container hero-in">
+    <div>
+      <h1 id="hero-title"></h1>
+      <p class="lead" id="hero-sub"></p>
+      <div class="acts">
+        <a class="btn btn-primary" href="products.html">View products</a>
+        <a class="btn btn-outline" href="contact.html">Request a quote</a>
+      </div>
+      <a class="hero-call" id="hero-call" href="#"></a>
+    </div>
+    <div class="stage" aria-hidden="false">
+      <img src="assets/img/hero-choke.webp" width="860" height="797" alt="Toroidal common mode choke made by Elvex Technologies" fetchpriority="high">
+      <span class="callout" style="top:30%;--len:60px;left:2%">Copper winding</span>
+      <span class="callout" style="top:62%;--len:56px;left:0">Toroidal core</span>
+    </div>
+    <div class="caps">
+      <div><h3>Built to your drawing</h3><p>Send a drawing or a spec. We make to it.</p></div>
+      <div><h3>Wound and tested in-house</h3><p>Winding, assembly and testing at one site.</p></div>
+      <div><h3>Prototype to volume</h3><p>Start with samples, scale when you are ready.</p></div>
+    </div>
+  </div>
 </section>
 
-<section class="features"><div class="container"><div class="grid">
-  <div class="feature"><div class="ic" data-icon="shield"></div><div><h3>Quality Assured</h3><p>100% electrical testing before dispatch</p></div></div>
-  <div class="feature"><div class="ic" data-icon="cog"></div><div><h3>Custom Design</h3><p>Built to your drawings and specifications</p></div></div>
-  <div class="feature"><div class="ic" data-icon="factory"></div><div><h3>In-house Production</h3><p>Winding, assembly and testing under one roof</p></div></div>
-  <div class="feature"><div class="ic" data-icon="truck"></div><div><h3>On-time Delivery</h3><p>Reliable lead times from prototype to volume</p></div></div>
-</div></div></section>
-
-<section class="section" id="about"><div class="container about">
-  <div class="about-media reveal">
-    <div class="main"><img src="assets/img/products/hfTransformer.webp" alt="High-frequency SMPS transformer"></div>
-    <div class="side"><img src="assets/img/products/handWoundInductor.webp" alt="Hand-wound toroidal inductor"></div>
-    <div class="exp"><b id="exp-num">500+</b><span id="exp-label">Custom designs<br>delivered</span></div>
-  </div>
-  <div class="reveal">
-    <span class="kicker">About Us</span>
-    <h2 class="title" id="about-title"></h2>
-    <div id="about-text" style="margin-top:18px"></div>
-    <ul class="checks"><li>RoHS &amp; REACH compliant</li><li>Prototype to mass production</li><li>In-house test laboratory</li><li>Dedicated engineering support</li></ul>
-    <a class="btn btn-blue" href="about.html" data-arrow>More about us </a>
-  </div>
-</div></section>
-
-<section class="section bg-alt" id="products"><div class="container">
-  <div class="title-center reveal"><span class="kicker">Our Products</span><h2 class="title">Product Categories</h2><p>A complete range of electromagnetic and electronic components, available as standard parts or built to your specification.</p></div>
+<section class="section" id="products"><div class="container">
+  <div class="section-head"><div><h2>Our product range</h2><p>Five families of magnetic components. Pick a family to see the parts we make.</p></div><a class="link-more" href="products.html" id="pcount">All products</a></div>
   <div class="cat-grid" id="cat-grid"></div>
 </div></section>
 
-<section class="stats-band"><div class="container" id="stats"></div></section>
-
-<section class="section" id="featured"><div class="container">
-  <div class="title-center reveal"><span class="kicker">Featured</span><h2 class="title">Popular Products</h2></div>
+<section class="section bg-alt" id="featured"><div class="container">
+  <div class="section-head"><h2>Popular parts</h2></div>
   <div class="product-grid" id="featured-grid"></div>
-  <div style="text-align:center;margin-top:40px"><a class="btn btn-outline" href="products.html" data-arrow><span id="pcount">View all products</span> </a></div>
 </div></section>
 
-<section class="section bg-alt" id="industries"><div class="container">
-  <div class="title-center reveal"><span class="kicker">Industries</span><h2 class="title">Industries We Serve</h2><p>Our components are trusted in applications where performance and reliability are critical.</p></div>
-  <div class="ind-grid" id="ind-grid"></div>
-</div></section>
-
-<section class="section" id="process"><div class="container">
-  <div class="title-center reveal"><span class="kicker">How We Work</span><h2 class="title">Our Manufacturing Process</h2></div>
-  <div class="process">
-    <div class="step reveal"><div class="ic" data-icon="chat"></div><h3>Requirement Analysis</h3><p>We review your electrical, mechanical and compliance requirements.</p></div>
-    <div class="step reveal"><div class="ic" data-icon="ruler"></div><h3>Design &amp; Engineering</h3><p>Magnetic and circuit design with DFM review for cost and performance.</p></div>
-    <div class="step reveal"><div class="ic" data-icon="flask"></div><h3>Prototyping &amp; Testing</h3><p>Samples built and validated with electrical and thermal testing.</p></div>
-    <div class="step reveal"><div class="ic" data-icon="factory"></div><h3>Mass Production</h3><p>Scalable production with 100% end-of-line testing and traceability.</p></div>
+<section class="section" id="about"><div class="container about">
+  <div class="about-media reveal">
+    <div class="main"><img src="assets/img/products/hfTransformer.webp" alt="High-frequency SMPS transformer" loading="lazy"></div>
+  </div>
+  <div class="about-text reveal">
+    <h2 id="about-title"></h2>
+    <div id="about-text" style="margin-top:18px"></div>
+    <a class="btn btn-outline" href="about.html">About Elvex</a>
   </div>
 </div></section>
 
-<section class="section bg-alt" id="quality"><div class="container quality">
-  <div class="reveal">
-    <span class="kicker">Quality</span>
-    <h2 class="title">Committed to Quality at Every Step</h2>
-    <p style="margin-top:16px">Every component is inspected and tested before it leaves our facility. Our quality system covers incoming material inspection, in-process checks and final electrical, hi-pot and functional testing, with full batch traceability.</p>
-    <a class="btn btn-blue" href="contact.html" style="margin-top:10px" data-arrow>Talk to our team </a>
-  </div>
-  <div class="cert-grid reveal" id="certs"></div>
+<section class="section dark" id="process"><div class="container">
+  <div class="title-center"><h2>How an order runs</h2></div>
+  <ol class="process">
+    <li><h3>Requirement</h3><p>You share the drawing, electrical values and quantity.</p></li>
+    <li><h3>Design review</h3><p>We check the design for manufacturability and cost.</p></li>
+    <li><h3>Samples</h3><p>We build samples and test them against your spec.</p></li>
+    <li><h3>Production</h3><p>We wind, assemble and test every batch.</p></li>
+  </ol>
 </div></section>
-<section class="cta"><div class="container">
-  <div><h2>Looking for a reliable manufacturing partner?</h2><p>Share your drawings or specifications and get a detailed quote within 24 hours.</p></div>
-  <div class="acts"><a class="btn btn-primary" href="contact.html" data-arrow>Request a quote </a><a class="btn btn-white" href="products.html">View products</a></div>
+
+<section class="section" id="industries"><div class="container">
+  <div class="section-head"><h2>Industries we make for</h2></div>
+  <ul class="ind-list" id="ind-grid"></ul>
 </div></section>
+
+<section class="cta"><div class="container cta-in" id="cta"></div></section>
 </main>
 <script src="data/site-data.js"></script>
 <script src="assets/js/main.js"></script>

@@ -69,75 +69,65 @@
   const img = (item, alt) => `<img class="${isRender(item.image) ? "" : "photo"}" src="${esc(item.image || "")}" alt="${esc(alt || "")}" loading="lazy">`;
   const productCard = (p) => `
     <a class="p-card" href="product.html?id=${encodeURIComponent(p.id)}">
-      <div class="thumb">${p.featured ? '<span class="badge">Featured</span>' : ""}${img(p, p.name)}</div>
+      <div class="thumb">${img(p, p.name)}</div>
       <div class="body">
         <span class="cat">${esc(catName(p.category))}</span>
         <h3>${esc(p.name)}</h3>
         <p>${esc(p.tagline)}</p>
-        <div class="foot"><span>Get a quote</span><span class="link-more">Details ${ICON.arrow}</span></div>
       </div>
     </a>`;
 
   /* ---------- Header ---------- */
   function renderHeader() {
-    const tb = document.createElement("div");
-    tb.className = "topbar";
-    tb.innerHTML = `<div class="container">
-      <div class="tb">
-        ${S.email ? `<a href="mailto:${esc(S.email)}">${ICON.mail}${esc(S.email)}</a>` : ""}
-        ${S.phone ? `<a href="${telHref(S.phone)}">${ICON.phone}${esc(S.phone)}</a>` : ""}
-        ${S.hours ? `<span class="hide-sm">${ICON.clock}${esc(S.hours)}</span>` : ""}
-      </div>
-      <div class="soc">${socials()}</div>
-    </div>`;
     const header = document.createElement("header");
     header.className = "site-header";
-    const active = (p) => (page === p ? "active" : "");
+    const cur = (p) => (page === p ? ' aria-current="page"' : "");
+    const brand = `<a class="brand" href="index.html" aria-label="${esc(S.companyName)} home"><img src="assets/img/mark.png" alt=""><b>${esc(S.companyName)}</b></a>`;
     header.innerHTML = `
       <div class="container nav">
-        <a class="brand" href="index.html" aria-label="${esc(S.companyName)} home">
-          <img src="assets/img/logo.png" alt="">
-          <span class="bt"><b>${esc((S.companyName || "").toUpperCase())}</b><span>Magnetics · Electronics · Power</span></span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html" class="${active("home")}">Home</a></li>
-          <li><a href="about.html" class="${active("about")}">About Us</a></li>
-          <li class="has-drop"><button aria-haspopup="true" class="${page === "products" || page === "product" ? "active" : ""}">Products ${ICON.chev}</button>
+        ${brand}
+        <nav class="nav-links" aria-label="Main">
+          <a href="index.html"${cur("home")}>Home</a>
+          <a href="about.html"${cur("about")}>About</a>
+          <div class="has-drop"><button aria-haspopup="true" class="${page === "products" || page === "product" ? "active" : ""}">Products ${ICON.chev}</button>
             <div class="dropdown">
               ${CATS.map((c) => `<a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}<span>${countIn(c.id)}</span></a>`).join("")}
               <a class="all" href="products.html">All products</a>
             </div>
-          </li>
-          <li><a href="index.html#industries">Industries</a></li>
-          <li><a href="index.html#quality">Quality</a></li>
-          <li><a href="careers.html" class="${active("careers")}">Careers</a></li>
-          <li><a href="contact.html" class="${active("contact")}">Contact Us</a></li>
-        </ul>
+          </div>
+          <a href="index.html#industries">Industries</a>
+          <a href="careers.html"${cur("careers")}>Careers</a>
+          <a href="contact.html"${cur("contact")}>Contact</a>
+        </nav>
         <div class="nav-cta">
-          <a class="btn btn-primary" href="contact.html">Get a Quote</a>
-          <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+          ${S.phone ? `<a class="nav-phone" href="${telHref(S.phone)}">${ICON.phone}${esc(S.phone)}</a>` : ""}
+          <a class="btn btn-primary btn-sm" href="contact.html">Request a quote</a>
+          <button class="burger" aria-label="Open menu"><span></span><span></span></button>
         </div>
       </div>`;
     document.body.prepend(header);
-    document.body.prepend(tb);
 
-    const shade = document.createElement("div"); shade.className = "menu-shade";
-    const mm = document.createElement("nav"); mm.className = "mobile-menu"; mm.setAttribute("aria-label", "Mobile menu");
-    mm.innerHTML = `<button class="mm-close" aria-label="Close menu">×</button>
-      <a href="index.html">Home</a><a href="about.html">About Us</a><a href="products.html">Products</a>
-      <div class="sub">${CATS.map((c) => `<a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}</a>`).join("")}</div>
-      <a href="index.html#industries">Industries</a><a href="index.html#quality">Quality</a><a href="careers.html">Careers</a><a href="contact.html">Contact Us</a>
-      <a class="btn btn-primary" href="contact.html">Get a Quote</a>`;
-    document.body.append(shade, mm);
+    const mm = document.createElement("div"); mm.className = "mobile-menu"; mm.setAttribute("role", "dialog"); mm.setAttribute("aria-label", "Menu");
+    mm.innerHTML = `<div class="mm-top">${brand}<button class="mm-close" aria-label="Close menu">×</button></div>
+      <nav class="mm-links">
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a>
+        <div class="sub">${CATS.map((c) => `<a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}</a>`).join("")}</div>
+        <a href="index.html#industries">Industries</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="mm-contact">
+        ${S.phone ? `<a href="${telHref(S.phone)}">${ICON.phone}${esc(S.phone)}</a>` : ""}
+        ${S.email ? `<a href="mailto:${esc(S.email)}">${ICON.mail}${esc(S.email)}</a>` : ""}
+      </div>
+      <a class="btn btn-primary" href="contact.html">Request a quote</a>`;
+    document.body.append(mm);
     const close = () => document.body.classList.remove("menu-open");
     $(".burger", header).onclick = () => document.body.classList.add("menu-open");
-    $(".mm-close", mm).onclick = close; shade.onclick = close;
+    $(".mm-close", mm).onclick = close;
     $$("a", mm).forEach((a) => a.addEventListener("click", close));
+    addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
     const drop = $(".has-drop", header);
     $("button", drop).onclick = () => drop.classList.toggle("open");
     document.addEventListener("click", (e) => { if (!drop.contains(e.target)) drop.classList.remove("open"); });
-    const onScroll = () => header.classList.toggle("scrolled", scrollY > 20);
-    addEventListener("scroll", onScroll, { passive: true }); onScroll();
   }
 
   /* ---------- Footer ---------- */
@@ -147,22 +137,21 @@
     f.innerHTML = `
       <div class="container foot-top">
         <div>
-          <span class="foot-logo"><img src="assets/img/logo.png" alt="${esc(S.companyName)}"></span>
-          <p>${esc(S.tagline || "")} We design and manufacture electromagnetic components and electronic assemblies for OEMs across industries.</p>
+          <span class="foot-logo"><img src="assets/img/mark.png" alt=""><b>${esc(S.companyName)}</b></span>
+          <p>${esc(S.tagline || "")}</p>
           <div class="f-soc">${socials()}</div>
         </div>
-        <div><h4>Quick Links</h4><ul class="fl">
-          <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="products.html">Products</a></li>
-          <li><a href="index.html#industries">Industries</a></li><li><a href="index.html#quality">Quality</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+        <div><h4>Company</h4><ul class="fl">
+          <li><a href="about.html">About</a></li><li><a href="index.html#industries">Industries</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
         <div><h4>Products</h4><ul class="fl">${CATS.map((c) => `<li><a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}</a></li>`).join("")}</ul></div>
-        <div><h4>Contact Info</h4><ul class="ci">
+        <div><h4>Contact</h4><ul class="ci">
           ${S.address ? `<li>${ICON.pin}<span>${esc(S.address)}</span></li>` : ""}
           ${S.phone ? `<li>${ICON.phone}<a href="${telHref(S.phone)}">${esc(S.phone)}</a></li>` : ""}
           ${S.email ? `<li>${ICON.mail}<a href="mailto:${esc(S.email)}">${esc(S.email)}</a></li>` : ""}
           ${S.hours ? `<li>${ICON.clock}<span>${esc(S.hours)}</span></li>` : ""}
         </ul></div>
       </div>
-      <div class="foot-bottom"><div class="container"><span>© ${new Date().getFullYear()} ${esc(S.companyName)}. All rights reserved.</span><span>Designed &amp; manufactured in India</span></div></div>`;
+      <div class="foot-bottom"><div class="container"><span>© ${new Date().getFullYear()} ${esc(S.companyName)}. All rights reserved.</span><span>Bengaluru, India</span></div></div>`;
     document.body.append(f);
 
     if (S.whatsapp) {
@@ -191,65 +180,38 @@
   function aboutBlock() {
     $("#about-title").textContent = S.aboutTitle || "";
     $("#about-text").innerHTML = (S.aboutText || "").split(/\n\n+/).map((p) => `<p>${esc(p)}</p>`).join("");
-    const st = (S.stats || [])[0];
-    if (st && $("#exp-num")) { $("#exp-num").textContent = st.value; $("#exp-label").innerHTML = esc(st.label).replace(" ", "<br>"); }
-  }
-  function statsBand() {
-    const el = $("#stats"); if (!el) return;
-    el.innerHTML = (S.stats || []).map((x) => `<div class="stat-b"><b>${esc(x.value)}</b><span>${esc(x.label)}</span></div>`).join("");
   }
   function industries() {
     const el = $("#ind-grid"); if (!el) return;
-    el.innerHTML = (DATA.industries || []).map((d, i) => `<div class="ind reveal"><div class="ic">${ICON[IND_ICONS[i % IND_ICONS.length]]}</div><div><h3>${esc(d.name)}</h3><p>${esc(d.description)}</p></div></div>`).join("");
+    el.innerHTML = (DATA.industries || []).map((d) => `<li class="reveal"><h3>${esc(d.name)}</h3><p>${esc(d.description)}</p></li>`).join("");
+  }
+  function ctaBlock() {
+    const el = $("#cta"); if (!el) return;
+    el.innerHTML = `<div><h2>Have a drawing? Send it to us.</h2><p>Tell us the part, the quantity and the deadline. We will reply with questions or a quote.</p>
+      <div class="acts"><a class="btn btn-primary" href="contact.html">Request a quote</a><a class="btn btn-white" href="products.html">View products</a></div></div>
+      <ul class="cta-contact">
+        ${S.phone ? `<li>${ICON.phone}<div><b>Call</b><a href="${telHref(S.phone)}">${esc(S.phone)}</a></div></li>` : ""}
+        ${S.email ? `<li>${ICON.mail}<div><b>Email</b><a href="mailto:${esc(S.email)}">${esc(S.email)}</a></div></li>` : ""}
+        ${S.address ? `<li>${ICON.pin}<div><b>Visit</b>${esc(S.address)}</div></li>` : ""}
+      </ul>`;
   }
 
   /* ---------- Home ---------- */
   function homePage() {
-    // Slider: one slide per product category (first 4)
-    const slidesData = CATS.slice(0, 4);
-    const host = $("#slides");
-    host.innerHTML = slidesData.map((c, i) => `
-      <div class="slide ${i ? "" : "on"}" aria-hidden="${i ? "true" : "false"}">
-        <div class="container">
-          <div>
-            <span class="tag">${i === 0 ? esc(S.heroEyebrow || "Welcome to " + S.companyName) : esc(c.name)}</span>
-            ${i === 0 ? `<h1>${esc(S.heroTitle || c.headline || c.name)}</h1>` : `<h2>${esc(c.headline || c.name)}</h2>`}
-            <p>${esc(i === 0 ? (S.heroSubtitle || c.description) : c.description)}</p>
-            <div class="acts"><a class="btn btn-primary" href="products.html?category=${encodeURIComponent(c.id)}">${i === 0 ? "Explore products" : "View " + esc(c.name)} ${ICON.arrow}</a><a class="btn btn-white" href="contact.html">Get a quote</a></div>
-          </div>
-          <div class="pic"><img src="${esc(c.image)}" alt="${esc(c.name)}"></div>
-        </div>
-      </div>`).join("");
-    const slides = $$(".slide", host), dots = $("#dots");
-    dots.innerHTML = slides.map((_, i) => `<button aria-label="Slide ${i + 1}" class="${i ? "" : "on"}"></button>`).join("");
-    let cur = 0, timer;
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function go(i) {
-      cur = (i + slides.length) % slides.length;
-      slides.forEach((s, k) => { s.classList.toggle("on", k === cur); s.setAttribute("aria-hidden", k === cur ? "false" : "true"); });
-      $$("button", dots).forEach((b, k) => b.classList.toggle("on", k === cur));
-      clearTimeout(timer); if (!reduce) timer = setTimeout(() => go(cur + 1), 6500);
-    }
-    $$("button", dots).forEach((b, k) => b.onclick = () => go(k));
-    $("#prev").onclick = () => go(cur - 1); $("#next").onclick = () => go(cur + 1);
-    go(0);
-
-    $$("[data-icon]").forEach((el) => el.innerHTML = ICON[el.dataset.icon] || "");
+    $("#hero-title").textContent = S.heroTitle || "";
+    $("#hero-sub").textContent = S.heroSubtitle || "";
+    const call = $("#hero-call");
+    if (S.phone) { call.href = telHref(S.phone); call.innerHTML = `${ICON.phone}${esc(S.phone)} <span>Talk to an engineer</span>`; } else call.remove();
     aboutBlock();
-
     $("#cat-grid").innerHTML = CATS.map((c) => `
-      <a class="cat-card reveal" href="products.html?category=${encodeURIComponent(c.id)}">
+      <a class="cat-card" href="products.html?category=${encodeURIComponent(c.id)}">
         <div class="ph"><img src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy"></div>
-        <div class="tx"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><div class="meta"><span>${plural(countIn(c.id))}</span><span class="link-more">Explore ${ICON.arrow}</span></div></div>
+        <div class="tx"><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><span class="meta">${plural(countIn(c.id))}</span></div>
       </a>`).join("");
-    statsBand();
     const feat = PRODUCTS.filter((p) => p.featured);
     $("#featured-grid").innerHTML = (feat.length ? feat : PRODUCTS).slice(0, 8).map(productCard).join("");
-    $("#pcount").textContent = `View all ${PRODUCTS.length} products`;
+    $("#pcount").textContent = `All ${PRODUCTS.length} products`;
     industries();
-    const certs = S.certifications || [];
-    if (certs.length) $("#certs").innerHTML = certs.map((c) => `<div class="cert"><div class="seal">${esc(c.name.split(/[ :]/)[0])}</div><div><b>${esc(c.name)}</b><span>${esc(c.note)}</span></div></div>`).join("");
-    else $("#certs").remove();
   }
 
   /* ---------- Products ---------- */
@@ -265,7 +227,7 @@
       const t = term.trim().toLowerCase();
       const list = PRODUCTS.filter((p) => (active === "all" || p.category === active) &&
         (!t || [p.name, p.tagline, p.description, catName(p.category), ...(p.applications || [])].join(" ").toLowerCase().includes(t)));
-      $("#grid").innerHTML = list.length ? list.map(productCard).join("") : `<div class="empty" style="grid-column:1/-1">No products match your search. <a class="link-more" href="contact.html">Ask us about a custom design ${ICON.arrow}</a></div>`;
+      $("#grid").innerHTML = list.length ? list.map(productCard).join("") : `<div class="empty" style="grid-column:1/-1">No products match your search. <a class="link-more" href="contact.html">Ask us about a custom design </a></div>`;
       $("#count").innerHTML = `Showing <b>${list.length}</b> of ${PRODUCTS.length} products`;
       const cat = CATS.find((c) => c.id === active);
       $("#ph-title").textContent = cat ? cat.name : "Our Products";
@@ -283,7 +245,7 @@
   function productPage() {
     const p = PRODUCTS.find((x) => x.id === qs("id"));
     const root = $("#pd");
-    if (!p) { root.innerHTML = `<div class="empty" style="grid-column:1/-1">Product not found. <a class="link-more" href="products.html">Back to products ${ICON.arrow}</a></div>`; return; }
+    if (!p) { root.innerHTML = `<div class="empty" style="grid-column:1/-1">Product not found. <a class="link-more" href="products.html">Back to products </a></div>`; return; }
     document.title = p.name + " | " + S.companyName;
     const cat = CATS.find((c) => c.id === p.category);
     $("#ph-title").textContent = p.name;
@@ -326,8 +288,7 @@
   function aboutPage() {
     aboutBlock();
     $("#spec-sheet").innerHTML = (S.specSheet || []).map((r) => `<div><dt>${esc(r.label)}</dt><dd>${esc(r.value)}</dd></div>`).join("");
-    statsBand(); industries();
-    $$("[data-icon]").forEach((el) => el.innerHTML = ICON[el.dataset.icon] || "");
+    industries();
   }
 
   /* ---------- Contact ---------- */
@@ -338,12 +299,12 @@
       ["mail", "Email Us", S.email && `<a href="mailto:${esc(S.email)}">${esc(S.email)}</a>`]
     ].filter((c) => c[2]);
     $("#info-cards").innerHTML = cards.map(([ic, t, v]) => `<div class="info-card"><div class="ic">${ICON[ic]}</div><h3>${t}</h3><p>${v}</p></div>`).join("");
-    $("#contact-side").innerHTML = `<h3>Why work with ${esc(S.companyName)}?</h3><p>Engineering support from enquiry to delivery, with fast quotes and honest lead times.</p>
+    $("#contact-side").innerHTML = `<h3>Talk to our team</h3><p>Send your drawing or specification and tell us the quantity. We will reply by email or phone.</p>
       <ul>
         ${S.hours ? `<li>${ICON.clock}<span>${esc(S.hours)}</span></li>` : ""}
         ${S.whatsapp ? `<li>${ICON.whatsapp}<a href="https://wa.me/${esc(S.whatsapp.replace(/[^\d]/g, ""))}" target="_blank" rel="noopener">WhatsApp: ${esc(S.whatsapp)}</a></li>` : ""}
-        <li>${ICON.shield}<span>Your drawings and data are kept confidential</span></li>
-        <li>${ICON.truck}<span>Samples and volume supply across India and abroad</span></li>
+        
+        
       </ul>`;
     if (S.mapEmbedUrl) $("#map").innerHTML = `<div class="map"><iframe src="${esc(S.mapEmbedUrl)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe></div>`;
     const sel = $("#f-product");
@@ -386,7 +347,7 @@
           </div>
           ${j.description ? `<p>${esc(j.description)}</p>` : ""}
         </div>
-        <a class="btn btn-primary btn-sm" href="#apply" data-apply="${i}">Apply Now ${ICON.arrow}</a>
+        <a class="btn btn-primary btn-sm" href="#apply" data-apply="${i}">Apply now</a>
       </div>`).join("")
       : `<div class="empty">There are currently no advertised openings. You are welcome to send a general application below and we will keep it on file for future roles.</div>`;
 
@@ -485,8 +446,8 @@
   if (!location.hash) scrollTo(0, 0);
   renderHeader();
   ({ home: homePage, products: productsPage, product: productPage, about: aboutPage, contact: contactPage, careers: careersPage }[page] || (() => {}))();
+  ctaBlock();
   renderFooter();
-  $$("[data-arrow]").forEach((el) => el.insertAdjacentHTML("beforeend", ICON.arrow));
   if (page === "home") document.title = S.companyName + " | " + (S.tagline || "");
   reveal();
 })();
