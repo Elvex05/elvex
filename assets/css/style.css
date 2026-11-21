@@ -377,7 +377,7 @@ body.menu-open .mobile-menu { transform: none; visibility: visible; }
   .caps > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
   .form-row { grid-template-columns: 1fr 1fr; }
   .form { padding: 32px; }
-  .info-cards { grid-template-columns: repeat(4, 1fr); border-top: 0; gap: 16px; }
+  .info-cards { grid-template-columns: repeat(3, 1fr); border-top: 0; gap: 16px; }
   .info-card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; }
   .job { grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 22px 26px; }
   .pd-actions .btn { flex: 0 0 auto; }
@@ -648,3 +648,9 @@ body[data-page="home"] .about-text .eyebrow { display: none; }
 .to-top { bottom: 78px; }
 @media (min-width: 900px) { .about-media, body:not([data-page="home"]) .about-media { aspect-ratio: 4 / 3.4; } }
 .about-media .main img { object-position: 12% center !important; }
+
+/* Country flags for India / US contact */
+.ci svg.flag, .cta-contact svg.flag { width: 24px; height: 16px; margin-top: 4px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.25); }
+.info-card .ic svg.flag { width: 26px; height: 17px; border-radius: 2px; }
+.ci li b { display: block; color: #fff; font-weight: 600; margin-bottom: 2px; }
+.info-card { align-content: start; }

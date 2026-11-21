@@ -37,6 +37,8 @@
     up: svg('<path d="M12 19V5M6 11l6-6 6 6"/>'),
     mail: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'),
     phone: svg('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>'),
+    flagIN: '<svg class="flag" viewBox="0 0 30 20" aria-label="India"><rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#FF9933"/><rect y="13.33" width="30" height="6.67" fill="#138808"/><circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width=".8"/><circle cx="15" cy="10" r=".6" fill="#000080"/></svg>',
+    flagUS: '<svg class="flag" viewBox="0 0 30 20" aria-label="USA"><rect width="30" height="20" fill="#B22234"/><g fill="#fff"><rect y="1.54" width="30" height="1.54"/><rect y="4.62" width="30" height="1.54"/><rect y="7.69" width="30" height="1.54"/><rect y="10.77" width="30" height="1.54"/><rect y="13.85" width="30" height="1.54"/><rect y="16.92" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3C3B6E"/><g fill="#fff"><circle cx="2.2" cy="2" r=".6"/><circle cx="5.4" cy="2" r=".6"/><circle cx="8.6" cy="2" r=".6"/><circle cx="11" cy="2" r=".6"/><circle cx="3.8" cy="4.2" r=".6"/><circle cx="7" cy="4.2" r=".6"/><circle cx="10" cy="4.2" r=".6"/><circle cx="2.2" cy="6.4" r=".6"/><circle cx="5.4" cy="6.4" r=".6"/><circle cx="8.6" cy="6.4" r=".6"/><circle cx="11" cy="6.4" r=".6"/><circle cx="3.8" cy="8.6" r=".6"/><circle cx="7" cy="8.6" r=".6"/><circle cx="10" cy="8.6" r=".6"/></g></svg>',
     pin: svg('<path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="10" r="2.5"/>'),
     clock: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
     download: svg('<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>'),
@@ -145,10 +147,8 @@
           <li><a href="about.html">About</a></li><li><a href="index.html#industries">Industries</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
         <div><h4>Products</h4><ul class="fl">${CATS.map((c) => `<li><a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}</a></li>`).join("")}</ul></div>
         <div><h4>Contact</h4><ul class="ci">
-          ${S.address ? `<li>${ICON.pin}<span>${esc(S.address)}</span></li>` : ""}
-          ${S.usAddress ? `<li>${ICON.pin}<span><b>US Contact:</b> ${esc(S.usAddress)}</span></li>` : ""}
-          ${S.usPhone ? `<li>${ICON.phone}<a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a></li>` : ""}
-          ${S.phone ? `<li>${ICON.phone}<a href="${telHref(S.phone)}">${esc(S.phone)}</a></li>` : ""}
+          ${S.address ? `<li>${ICON.flagIN}<span><b>India</b>${esc(S.address)}${S.phone ? `<br><a href="${telHref(S.phone)}">${esc(S.phone)}</a>` : ""}</span></li>` : ""}
+          ${S.usAddress ? `<li>${ICON.flagUS}<span><b>USA</b>${esc(S.usAddress)}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : ""}</span></li>` : ""}
           ${S.email ? `<li>${ICON.mail}<a href="mailto:${esc(S.email)}">${esc(S.email)}</a></li>` : ""}
           ${S.hours ? `<li>${ICON.clock}<span>${esc(S.hours)}</span></li>` : ""}
         </ul></div>
@@ -197,8 +197,8 @@
       <ul class="cta-contact">
         ${S.phone ? `<li>${ICON.phone}<div><b>Call</b><a href="${telHref(S.phone)}">${esc(S.phone)}</a></div></li>` : ""}
         ${S.email ? `<li>${ICON.mail}<div><b>Email</b><a href="mailto:${esc(S.email)}">${esc(S.email)}</a></div></li>` : ""}
-        ${S.address ? `<li>${ICON.pin}<div><b>Visit</b>${esc(S.address)}</div></li>` : ""}
-        ${S.usAddress ? `<li>${ICON.pin}<div><b>US Contact</b>${esc(S.usAddress)}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : ""}</div></li>` : ""}
+        ${S.address ? `<li>${ICON.flagIN}<div><b>Visit — India</b>${esc(S.address)}</div></li>` : ""}
+        ${S.usAddress ? `<li>${ICON.flagUS}<div><b>US Contact</b>${esc(S.usAddress)}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : ""}</div></li>` : ""}
       </ul>`;
   }
 
@@ -317,9 +317,8 @@
   /* ---------- Contact ---------- */
   function contactPage() {
     const cards = [
-      ["pin", "Our Address", S.address && esc(S.address)],
-      ["pin", "US Contact", S.usAddress && esc(S.usAddress) + (S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : "")],
-      ["phone", "Call Us", S.phone && `<a href="${telHref(S.phone)}">${esc(S.phone)}</a>`],
+      ["flagIN", "India Office", S.address && esc(S.address) + (S.phone ? `<br><a href="${telHref(S.phone)}">${esc(S.phone)}</a>` : "")],
+      ["flagUS", "US Contact", S.usAddress && esc(S.usAddress) + (S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : "")],
       ["mail", "Email Us", S.email && `<a href="mailto:${esc(S.email)}">${esc(S.email)}</a>`]
     ].filter((c) => c[2]);
     $("#info-cards").innerHTML = cards.map(([ic, t, v]) => `<div class="info-card"><div class="ic">${ICON[ic]}</div><h3>${t}</h3><p>${v}</p></div>`).join("");
