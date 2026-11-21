@@ -195,10 +195,8 @@
     el.innerHTML = `<div><h2>Have a drawing? Send it to us.</h2><p>Tell us the part, the quantity and the deadline. We will reply with questions or a quote.</p>
       <div class="acts"><a class="btn btn-primary" href="contact.html">Request a quote</a><a class="btn btn-white" href="products.html">View products</a></div></div>
       <ul class="cta-contact">
-        ${S.phone ? `<li>${ICON.phone}<div><b>Call</b><a href="${telHref(S.phone)}">${esc(S.phone)}</a></div></li>` : ""}
+        ${S.phone || S.usPhone ? `<li>${ICON.phone}<div><b>Call</b>${S.phone ? `<a href="${telHref(S.phone)}">${esc(S.phone)}</a> <span class="cc-note">India</span>` : ""}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a> <span class="cc-note">USA</span>` : ""}</div></li>` : ""}
         ${S.email ? `<li>${ICON.mail}<div><b>Email</b><a href="mailto:${esc(S.email)}">${esc(S.email)}</a></div></li>` : ""}
-        ${S.address ? `<li>${ICON.flagIN}<div><b>Visit — India</b>${esc(S.address)}</div></li>` : ""}
-        ${S.usAddress ? `<li>${ICON.flagUS}<div><b>US Contact</b>${esc(S.usAddress)}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : ""}</div></li>` : ""}
       </ul>`;
   }
 

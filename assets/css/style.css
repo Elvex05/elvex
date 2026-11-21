@@ -654,3 +654,4 @@ body[data-page="home"] .about-text .eyebrow { display: none; }
 .info-card .ic svg.flag { width: 26px; height: 17px; border-radius: 2px; }
 .ci li b { display: block; color: #fff; font-weight: 600; margin-bottom: 2px; }
 .info-card { align-content: start; }
+.cta-contact .cc-note { color: rgba(255,255,255,.55); font-size: .85em; margin-left: 6px; }
