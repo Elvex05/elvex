@@ -17,6 +17,8 @@ window.ELVEX_DATA = {
     "phone": "+91 91804 29549",
     "whatsapp": "",
     "address": "No. 118, 1st Stage, Buddha Jyothi Layout, Chikkabidarakallu, Nagasandra Post, Bengaluru, Karnataka 560073",
+    "usAddress": "4751 Ilkley Moor Ln, Ellicott City, MD 21043, USA",
+    "usPhone": "+1 301 284 8499",
     "hours": "Mon – Sat, 9:00 AM – 6:00 PM",
     "formEndpoint": "",
     "mapEmbedUrl": "",

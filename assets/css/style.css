@@ -377,7 +377,7 @@ body.menu-open .mobile-menu { transform: none; visibility: visible; }
   .caps > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
   .form-row { grid-template-columns: 1fr 1fr; }
   .form { padding: 32px; }
-  .info-cards { grid-template-columns: repeat(3, 1fr); border-top: 0; gap: 16px; }
+  .info-cards { grid-template-columns: repeat(4, 1fr); border-top: 0; gap: 16px; }
   .info-card { border: 1px solid var(--line); border-radius: 8px; padding: 22px; }
   .job { grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 22px 26px; }
   .pd-actions .btn { flex: 0 0 auto; }

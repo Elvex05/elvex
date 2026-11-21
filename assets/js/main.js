@@ -146,6 +146,8 @@
         <div><h4>Products</h4><ul class="fl">${CATS.map((c) => `<li><a href="products.html?category=${encodeURIComponent(c.id)}">${esc(c.name)}</a></li>`).join("")}</ul></div>
         <div><h4>Contact</h4><ul class="ci">
           ${S.address ? `<li>${ICON.pin}<span>${esc(S.address)}</span></li>` : ""}
+          ${S.usAddress ? `<li>${ICON.pin}<span><b>US Contact:</b> ${esc(S.usAddress)}</span></li>` : ""}
+          ${S.usPhone ? `<li>${ICON.phone}<a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a></li>` : ""}
           ${S.phone ? `<li>${ICON.phone}<a href="${telHref(S.phone)}">${esc(S.phone)}</a></li>` : ""}
           ${S.email ? `<li>${ICON.mail}<a href="mailto:${esc(S.email)}">${esc(S.email)}</a></li>` : ""}
           ${S.hours ? `<li>${ICON.clock}<span>${esc(S.hours)}</span></li>` : ""}
@@ -196,6 +198,7 @@
         ${S.phone ? `<li>${ICON.phone}<div><b>Call</b><a href="${telHref(S.phone)}">${esc(S.phone)}</a></div></li>` : ""}
         ${S.email ? `<li>${ICON.mail}<div><b>Email</b><a href="mailto:${esc(S.email)}">${esc(S.email)}</a></div></li>` : ""}
         ${S.address ? `<li>${ICON.pin}<div><b>Visit</b>${esc(S.address)}</div></li>` : ""}
+        ${S.usAddress ? `<li>${ICON.pin}<div><b>US Contact</b>${esc(S.usAddress)}${S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : ""}</div></li>` : ""}
       </ul>`;
   }
 
@@ -315,6 +318,7 @@
   function contactPage() {
     const cards = [
       ["pin", "Our Address", S.address && esc(S.address)],
+      ["pin", "US Contact", S.usAddress && esc(S.usAddress) + (S.usPhone ? `<br><a href="${telHref(S.usPhone)}">${esc(S.usPhone)}</a>` : "")],
       ["phone", "Call Us", S.phone && `<a href="${telHref(S.phone)}">${esc(S.phone)}</a>`],
       ["mail", "Email Us", S.email && `<a href="mailto:${esc(S.email)}">${esc(S.email)}</a>`]
     ].filter((c) => c[2]);
